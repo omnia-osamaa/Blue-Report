@@ -1,33 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:general_app/core/locolization/localization_manager.dart';
 import 'package:general_app/core/routes/app_routes.dart';
-import 'core/routes/routes.dart';
-import 'core/theme/app_theme.dart';
-import 'core/di/injection_container.dart' as di;
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:general_app/core/routes/routes.dart';
+import 'package:general_app/core/theme/app_theme.dart';
+import 'package:general_app/core/di/injection_container.dart' as di;
+import 'package:general_app/features/auth/presentation/bloc/auth_cubit.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:general_app/core/widgets/responsive_wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await initializeDateFormatting('en', null);
+  await di.init();
 
-  // Set preferred orientations
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
   ]);
-
-  // Set system UI overlay style
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-    ),
-  );
-
-  // Initialize dependency injection
-  await di.init();
 
   runApp(
     EasyLocalization(
@@ -50,17 +46,20 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          title: 'Flutter Forge App',
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.system,
-          initialRoute: Routes.splash,
-          onGenerateRoute: AppRouter.generateRoute,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
+        return BlocProvider(
+          create: (_) => di.sl<AuthCubit>(),
+          child: MaterialApp(
+            title: 'Blue Report',
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: ThemeMode.system,
+            initialRoute: Routes.splash,
+            onGenerateRoute: AppRouter.generateRoute,
+            builder: (context, child) {
+              return ResponsiveWrapper(child: child!);
+            },
+          ),
         );
       },
     );

@@ -1,5 +1,7 @@
 
+
 import 'package:flutter/material.dart';
+import 'package:general_app/core/theme/app_typography.dart';
 import '../theme/colors.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -38,11 +40,7 @@ class CustomTextField extends StatelessWidget {
         if (label != null) ...[
           Text(
             label!,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: AppColors.textPrimary,
-            ),
+            style: AppTypography.bodyMedium,
           ),
           const SizedBox(height: 8),
         ],
@@ -54,15 +52,13 @@ class CustomTextField extends StatelessWidget {
           maxLines: maxLines,
           enabled: enabled,
           onChanged: onChanged,
-          style: const TextStyle(
-            fontSize: 16,
+          style: AppTypography.bodyLarge.copyWith(
             color: AppColors.textPrimary,
           ),
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: TextStyle(
+            hintStyle: AppTypography.bodyMedium.copyWith(
               color: AppColors.textSecondary.withOpacity(0.6),
-              fontSize: 14,
             ),
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
@@ -96,3 +92,4 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
+

@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:general_app/core/theme/app_typography.dart';
 import '../theme/colors.dart';
 
 class CustomButton extends StatelessWidget {
@@ -57,21 +59,20 @@ class CustomButton extends StatelessWidget {
 
   Widget _buildChild() {
     if (isLoading) {
-      return const SizedBox(
+      return SizedBox(
         width: 24,
         height: 24,
         child: CircularProgressIndicator(
-          color: AppColors.primary,
+          color: isOutlined ? AppColors.primary : Colors.white,
           strokeWidth: 2.5,
         ),
       );
     }
     return Text(
       text,
-      style: TextStyle(
-        fontSize: 18,
+      style: AppTypography.h4.copyWith(
         fontWeight: FontWeight.w900,
-        color: AppColors.primary,
+        color: isOutlined ? AppColors.primary : Colors.white,
       ),
     );
   }

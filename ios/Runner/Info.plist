@@ -2,10 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
+	    <key>NSCameraUsageDescription</key>
+        <string>We need camera access to capture waste photos for reporting</string>
+        <!-- Photo Library Permission -->
+        <key>NSPhotoLibraryUsageDescription</key>
+        <string>We need photo library access to select waste images</string>
+        <!-- Location Permission -->
+        <key>NSLocationWhenInUseUsageDescription</key>
+        <string>We need your location to tag waste reports accurately</string>
+        <key>NSLocationAlwaysUsageDescription</key>
+        <string>We need your location to tag waste reports accurately</string>
+		<!-- new -->
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>General App</string>
+		<string>Blue Report</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
