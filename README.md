@@ -132,4 +132,4 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 ---
 
 ## 📸 Application Showcase
-![Blue Report App](app.png)
+![Blue Report App](assets/images/app.png)
