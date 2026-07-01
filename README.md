@@ -128,3 +128,8 @@ Below is the data lifecycle map illustrating communications across UI, Cubit man
 
 ## 📄 License
 This project is licensed under the MIT License - see the `LICENSE` file for details.
+
+---
+
+## 📸 Application Showcase
+![Blue Report App](app.png)
